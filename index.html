@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hollow Knight Characters</title>
+  <!-- Import font mirip Trajan (Cinzel) dari Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: url("latar.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Kotak karakter */
+    .character {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin: 60px auto;
+      max-width: 900px;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #1a1a1a;
+      border: 30px solid transparent;                  
+      border-image: url("border.png") 30 round;
+      outline: 3px solid white; 
+      voutline-offset: -30px;         
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+      cursor: pointer; /* biar kelihatan bisa diklik */
+    }
+
+    .character.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .character:hover {
+      background-color: rgba(26,26,26,0.92);
+      box-shadow:
+        0 0 0 2px rgb(255, 255, 255) inset,
+        0 0 24px rgb(255, 255, 255),
+        0 0 64px rgb(255, 255, 255);
+      transform: translateY(-10px) scale(1.05);
+    }
+
+    .character img {
+      width: 250px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .character-text {
+      text-align: left;
+    }
+
+    .reverse {
+      flex-direction: row-reverse;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      font-size: 2.5em;
+      font-weight: bold;
+      background-color: #1a1a1a;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px;
+    }
+
+    nav a {
+      color: #e7f9ff;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Modal video */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .modal-content video {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid white;
+    }
+
+    .close {
+      position: absolute;
+      top: -40px;
+      right: -10px;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>Hollow Knight Characters</header>
+
+  <nav>
+    <a href="#knight">The Knight</a>
+    <a href="#hornet">Hornet</a>
+    <a href="#radiance">The Radiance</a>
+    <a href="#quirrel">Quirrel</a>
+  </nav>
+
+  <section id="knight" class="character" onclick="openModal('knight.mkv')">
+    <img src="knight.png" alt="The Knight">
+    <div class="character-text">
+      <h2>The Knight</h2>
+      <p>Knight adalah Vessel yang terbuang. Mereka adalah anak dari Pale King dan White Lady, lahir di Abyss dengan Void di dalam cangkang mereka. Hornet adalah saudara perempuan Knight melalui ayah mereka. Seperti saudara Vessel lainnya, Knight tidak memiliki gender.</p>
+    </div>
+  </section>
+
+  <section id="hornet" class="character reverse" onclick="openModal('hornet.mp4')">
+    <img src="hornet.png" alt="Hornet">
+    <div class="character-text">
+      <h2>Hornet</h2>
+      <p>Hornet adalah putri dari Raja Pucat dan Herrah si Binatang Buas, ratu Deepnest. Kelahirannya merupakan hasil kesepakatan agar ibunya menjadi seorang Pemimpi, dan karena itu, ia hanya menghabiskan waktu singkat bersama Herrah. Ayahnya yang sama dengan sang Ksatria dan para Vessel lainnya menjadikan mereka saudara kandung.</p>
+    </div>
+  </section>
+
+  <section id="radiance" class="character" onclick="openModal('radiance.mp4')">
+    <img src="radiance.png" alt="The Radiance">
+    <div class="character-text">
+      <h2>The Radiance</h2>
+      <p>Radiance adalah makhluk cahaya yang lebih tinggi, serupa dengan Essence, dan karenanya, berlawanan dengan Void, musuh bebuyutannya. Suku Ngengat lahir dari cahayanya dan sebagai balasannya, mereka memujanya.</p>
+    </div>
+  </section>
+
+  <section id="quirrel" class="character reverse" onclick="openModal('quirrel.mp4')">
+  <img src="quirrel.png" alt="Quirrel">
+  <div class="character-text">
+    <h2>Quirrel</h2>
+    <p>Sebelum kejatuhan Hallownest, Quirrel dulunya adalah murid Monomon. Ketika Monomon menjadi seorang Pemimpi, ia mempercayakan topengnya kepada Quirrel, yang merupakan bagian dari perlindungan tambahan yang diberlakukan pada dirinya sendiri. Quirrel terlihat mengenakan topeng ini di atas kepalanya. Dalam komik resminya, diperlihatkan bahwa Quirrel berakhir di luar Hallownest.</p>
+  </div>
+  </section>
+
+
+  <!-- Modal -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <video id="modalVideo" controls>
+        <source src="" type="video/mp4">
+        Browser kamu tidak mendukung video.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    // Intersection Observer untuk efek fade-in
+    const characters = document.querySelectorAll('.character');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    characters.forEach(char => observer.observe(char));
+
+    // Modal video
+    function openModal(videoSrc) {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      video.src = videoSrc;
+      modal.style.display = "flex";
+      video.play();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      modal.style.display = "none";
+      video.pause();
+      video.currentTime = 0;
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('videoModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
