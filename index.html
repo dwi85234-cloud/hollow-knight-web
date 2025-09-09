@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Hollow Knight Characters</title>
-  <!-- Import font mirip Trajan (Cinzel) dari Google Fonts -->
+
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -15,7 +15,7 @@
       padding: 0;
     }
 
-    /* Kotak karakter */
+    
     .character {
       display: flex;
       align-items: center;
@@ -33,7 +33,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: all 0.8s ease;
-      cursor: pointer; /* biar kelihatan bisa diklik */
+      cursor: pointer;
     }
 
     .character.show {
@@ -87,7 +87,6 @@
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     }
 
-    /* Modal video */
     .modal {
       display: none;
       position: fixed;
@@ -166,8 +165,6 @@
   </div>
   </section>
 
-
-  <!-- Modal -->
   <div id="videoModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -179,7 +176,6 @@
   </div>
 
   <script>
-    // Intersection Observer untuk efek fade-in
     const characters = document.querySelectorAll('.character');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -191,7 +187,6 @@
 
     characters.forEach(char => observer.observe(char));
 
-    // Modal video
     function openModal(videoSrc) {
       const modal = document.getElementById('videoModal');
       const video = document.getElementById('modalVideo');
@@ -217,3 +212,4 @@
   </script>
 </body>
 </html>
+
